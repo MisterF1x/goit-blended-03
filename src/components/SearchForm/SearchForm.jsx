@@ -1,5 +1,7 @@
 import { FiSearch } from 'react-icons/fi';
 import { BtnSearch, Select, SearchFormStyled } from './SearchForm.styled';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const regions = [
   { id: 'africa', value: 'africa', name: 'Africa' },
@@ -9,14 +11,30 @@ const regions = [
   { id: 'oceania', value: 'oceania', name: 'Oceania' },
 ];
 
-export const SearchForm = () => {
+export const SearchForm = ({ onSubmit }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const onHandleSubmit = evt => {
+    evt.preventDefault();
+    onSubmit(searchQuery);
+    setSearchQuery('');
+  };
+  const onHandleChange = evt => {
+    setSearchQuery(evt.currentTarget.value);
+  };
   return (
-    <SearchFormStyled>
+    <SearchFormStyled onSubmit={onHandleSubmit}>
       <BtnSearch type="submit">
         <FiSearch size="16px" />
       </BtnSearch>
-      <Select aria-label="select" name="region" required>
-        <option selected disabled defaultValue="">
+      <Select
+        style={{ color: '#f64f59' }}
+        value={searchQuery}
+        onChange={onHandleChange}
+        aria-label="select"
+        name="region"
+        required
+      >
+        <option disabled value="">
           Select a region and press enter
         </option>
         {regions &&
@@ -28,4 +46,8 @@ export const SearchForm = () => {
       </Select>
     </SearchFormStyled>
   );
+};
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

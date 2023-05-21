@@ -6,12 +6,17 @@ import {
   Loader,
   CountryList,
 } from 'components';
+import { useFetchByRegion } from 'hooks/useFetchByRegion';
 
 export const CountrySearch = () => {
+  const { countries, error, isLoading, onHandleSubmit } = useFetchByRegion();
   return (
     <Section>
       <Container>
-        <h2>CountrySearch</h2>
+        <SearchForm onSubmit={onHandleSubmit} />
+        {error && <Heading textAlign="center">Something went wrong...</Heading>}
+        {isLoading && <Loader />}
+        {countries.length > 0 && <CountryList countries={countries} />}
       </Container>
     </Section>
   );
