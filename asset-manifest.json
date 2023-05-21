@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/goit-blended-03/static/css/main.412fc565.css",
+    "main.js": "/goit-blended-03/static/js/main.8f957e95.js",
+    "index.html": "/goit-blended-03/index.html",
+    "main.412fc565.css.map": "/goit-blended-03/static/css/main.412fc565.css.map",
+    "main.8f957e95.js.map": "/goit-blended-03/static/js/main.8f957e95.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.412fc565.css",
+    "static/js/main.8f957e95.js"
+  ]
+}
